@@ -1,0 +1,41 @@
+/* font-family: 'Bebas Neue', cursive; */
+/* font-family: 'Montserrat', sans-serif; */
+
+header {
+  height: 5em;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+nav {
+  height: 100%;
+}
+
+nav > ul {
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  list-style: none;
+  justify-content: end;
+  align-items: center;
+}
+
+nav > ul > li {
+  margin: 0 20px;
+}
+
+nav > ul > li > a {
+  text-decoration: none;
+  font-size: 1.3em;
+  color: black;
+}
+
+#logo {
+  font-size: 2em;
+  margin-right: auto;
+  font-family: "Bebas Neue", cursive;
+}
