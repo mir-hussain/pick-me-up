@@ -18,12 +18,3 @@ main {
   width: 200px;
   background-color: white;
 }
-
-.selector-image-container {
-  height: 200px;
-}
-
-.selector-image-container > img {
-  height: 100%;
-  width: 100%;
-}
