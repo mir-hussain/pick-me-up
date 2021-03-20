@@ -8,8 +8,9 @@
 
 .destination-search-area {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  position: relative;
+  align-items: center;
   height: 100vh;
   width: 40%;
 }
@@ -21,9 +22,6 @@
 }
 
 .location-form {
-  background-color: seagreen;
-  position: absolute;
-  top: 80px;
   background-color: #cab5ad;
   border-radius: 5px;
   width: 400px;
