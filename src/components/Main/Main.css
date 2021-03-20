@@ -1,15 +1,17 @@
 main {
   height: 100vh;
   width: 100%;
-  background-image: url(../../images/Bg.png);
-  background-size: contain;
+  background-image: url(https://live.staticflickr.com/65535/51054588338_4ce16469e8_o.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .selector {
-  color: black;
+  color: gray;
+  transition: all 250ms ease-in-out;
 }
 
 .ride-selector-container {
@@ -32,10 +34,50 @@ main {
   display: block;
   width: 100%;
   height: 100%;
+  filter: grayscale(1);
+  transition: all 250ms ease-in-out;
 }
 
 .selector-title {
   height: 30px;
-  background-color: rebeccapurple;
+  background-color: white;
   text-align: center;
+  transition: all 250ms ease-in-out;
+}
+
+.selector:hover {
+  color: white;
+}
+
+.selector:hover .selector-title {
+  background-color: #839caf;
+}
+
+.selector:hover .selector-image-container > img {
+  filter: grayscale(0);
+}
+
+@media only screen and (max-width: 415px) {
+  main {
+    background-size: cover;
+    height: 100%;
+    padding-bottom: 100px;
+  }
+  .ride-selector-container {
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 55%;
+  }
+
+  .selector-image-container > img {
+    filter: grayscale(0);
+  }
+
+  .selector {
+    color: white;
+  }
+
+  .selector-title {
+    background-color: #839caf;
+  }
 }

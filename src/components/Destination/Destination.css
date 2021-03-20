@@ -8,26 +8,33 @@
 
 .destination-search-area {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 100vh;
   width: 40%;
 }
 
 .map-container {
-  background-color: rosybrown;
   height: 100vh;
   width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+#map {
+  height: 80%;
+  width: 90%;
+  margin-top: 80px;
 }
 
 .location-form {
-  background-color: #cab5ad;
+  background-color: #c3c3c3;
+  margin-top: 80px;
   border-radius: 5px;
   width: 400px;
   padding: 20px;
   font-size: 1.2em;
-  color: #1a0a08;
+  color: #1d1d1d;
 }
 
 .location-form > div {
@@ -39,7 +46,29 @@
   height: 40px;
   color: black;
   margin-top: 20px;
-  background-color: #fdba45;
+  background-color: #839caf;
   border: none;
   border-radius: 3px;
+}
+
+@media only screen and (max-width: 415px) {
+  #destination {
+    flex-direction: column;
+  }
+
+  .map-container {
+    width: 100%;
+  }
+
+  #map {
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .destination-search-area {
+    height: 100%;
+    width: 100%;
+    margin-top: 150px;
+  }
 }

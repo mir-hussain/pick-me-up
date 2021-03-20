@@ -28,6 +28,7 @@ const Header = () => {
     currentUser = {};
     setUser(currentUser);
   };
+
   return (
     <header>
       <nav>
@@ -42,10 +43,12 @@ const Header = () => {
           <li style={hide}>
             <Link to='/login'>Login</Link>
           </li>
-          {user.loggedIn && <li>{user.displayName}</li>}
+          {user.loggedIn && <li id='user-name'>{user.displayName}</li>}
           {user.loggedIn && (
             <li>
-              <button onClick={signOut}> Log out </button>
+              <button id='logout-btn' onClick={signOut}>
+                Log out
+              </button>
             </li>
           )}
         </ul>

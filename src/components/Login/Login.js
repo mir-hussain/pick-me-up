@@ -40,9 +40,15 @@ const Login = () => {
 
     if (event.target.name === "password") {
       const userPassword = event.target.value;
-      const isLengthValid = userPassword.length > 6;
+      const isLengthValid = userPassword.length >= 6;
+      if (newUser && userPassword.length < 6) {
+        alert("Your password must contain at least 6 characters ");
+      }
       const re = /\d{1}/;
       const isContainsDigit = re.test(userPassword);
+      if (newUser && !isContainsDigit) {
+        alert("Your password must contain at least 1 number ");
+      }
       isFormValid = isLengthValid && isContainsDigit;
     }
     if (isFormValid) {
@@ -60,11 +66,17 @@ const Login = () => {
         .then((res) => {
           console.log(res);
           userName(user.name);
+          const currentUser = { ...user };
+          currentUser.successful = true;
+          currentUser.error = "";
+          setUser(currentUser);
         })
         .catch((error) => {
-          const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
+          const currentUser = { ...user };
+          currentUser.successful = false;
+          currentUser.error = errorMessage;
+          setUser(currentUser);
         });
     }
     if (!newUser) {
@@ -77,13 +89,16 @@ const Login = () => {
           const currentUser = { ...user };
           currentUser.name = user.displayName;
           currentUser.loggedIn = true;
+          currentUser.error = "";
           setUser(currentUser);
           history.replace(from);
         })
         .catch((error) => {
-          const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
+          const currentUser = { ...user };
+          currentUser.successful = false;
+          currentUser.error = errorMessage;
+          setUser(currentUser);
         });
     }
     event.preventDefault();
@@ -154,6 +169,8 @@ const Login = () => {
         <button onClick={handleSignInWithGoogle} className='google-btn'>
           Sign in using google
         </button>
+        <p style={{ color: "red", marginTop: "20px" }}>{user.error}</p>
+        {user.successful && <p style={{ color: "green", marginTop: "20px" }}>User created successfully</p>}
       </div>
     </section>
   );

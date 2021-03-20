@@ -8,6 +8,7 @@ header {
   bottom: 0;
   left: 0;
   right: 0;
+  background-image: linear-gradient(#fff, rgba(255, 255, 255, 0));
 }
 
 nav {
@@ -38,4 +39,30 @@ nav > ul > li > a {
   font-size: 2em;
   margin-right: auto;
   font-family: "Bebas Neue", cursive;
+}
+
+#user-name {
+  font-size: 1.3em;
+}
+
+#logout-btn {
+  background-color: #4e4e4e96;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 415px) {
+  header {
+    height: 180px;
+  }
+  nav > ul {
+    flex-direction: column;
+  }
+  #logo {
+    margin: 0;
+  }
 }

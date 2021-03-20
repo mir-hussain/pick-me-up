@@ -13,7 +13,7 @@
 }
 
 #login {
-  background-color: #cab5ad;
+  background-color: #c3c3c3;
   border-radius: 5px;
   width: 500px;
   padding: 20px;
@@ -41,7 +41,7 @@
 
 .input-field > input:focus {
   outline: none;
-  box-shadow: 0px 0px 0px 3px#B79691;
+  box-shadow: 0px 0px 0px 3px#797979;
 }
 
 .sign-btn {
@@ -49,7 +49,7 @@
   height: 40px;
   color: black;
   margin-top: 20px;
-  background-color: #fdba45;
+  background-color: #839caf;
   border: none;
   border-radius: 3px;
 }
@@ -59,7 +59,14 @@
   height: 40px;
   color: black;
   margin-top: 20px;
-  background-color: #fdba45;
+  background-color: #839caf;
   border: none;
   border-radius: 3px;
+}
+
+@media only screen and (max-width: 415px) {
+  #login {
+    width: 350px;
+    margin-top: 50%;
+  }
 }
