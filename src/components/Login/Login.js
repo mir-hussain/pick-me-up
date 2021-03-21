@@ -3,22 +3,18 @@ import React, { useContext, useState } from "react";
 //css
 import "./Login.css";
 
-//firebase
-import firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from "./firebase.config";
-
 //icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 //UserContext
 import { UserContext } from "../../App";
+
+// react router
 import { useHistory, useLocation } from "react-router";
 
-if (firebase.apps.length === 0) {
-  firebase.initializeApp(firebaseConfig);
-}
+//firebase imports
+import { emailSignIn, emailSignUp, handleSignInWithGoogle, initFirebase } from "./Firebase";
 
 const Login = () => {
   const [user, setUser] = useContext(UserContext);
@@ -32,6 +28,10 @@ const Login = () => {
   const handleToggle = () => {
     setNewUser(!newUser);
   };
+
+  initFirebase();
+
+  ////to get user info
 
   const handleBlur = (event) => {
     let isFormValid = true;
@@ -62,87 +62,39 @@ const Login = () => {
     }
   };
 
+  ////for response handling
+
+  const handleResponse = (res, redirect) => {
+    setUser(res);
+    if (redirect) {
+      history.replace(from);
+    }
+  };
+
+  ////google sign in
+
+  const googleSignIn = () => {
+    handleSignInWithGoogle().then((res) => {
+      handleResponse(res, true);
+    });
+  };
+
+  ////email sing up
+
   const handleSubmit = (event) => {
     if (newUser && user.email && user.password) {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(user.email, user.password)
-        .then((res) => {
-          console.log(res);
-          userName(user.name);
-          const currentUser = { ...user };
-          currentUser.successful = true;
-          currentUser.loggedIn = true;
-          currentUser.name = user.name;
-          currentUser.error = "";
-          setUser(currentUser);
-          history.replace(from);
-        })
-        .catch((error) => {
-          const errorMessage = error.message;
-          const currentUser = { ...user };
-          currentUser.successful = false;
-          currentUser.error = errorMessage;
-          setUser(currentUser);
-        });
+      emailSignUp(user.name, user.email, user.password).then((res) => {
+        handleResponse(res, true);
+      });
     }
     if (!newUser) {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(user.email, user.password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          const currentUser = { ...user };
-          currentUser.name = user.displayName;
-          currentUser.loggedIn = true;
-          currentUser.error = "";
-          setUser(currentUser);
-          history.replace(from);
-        })
-        .catch((error) => {
-          const errorMessage = error.message;
-          const currentUser = { ...user };
-          currentUser.successful = false;
-          currentUser.error = errorMessage;
-          setUser(currentUser);
-        });
+      emailSignIn(user.email, user.password).then((res) => {
+        handleResponse(res, true);
+      });
     }
     event.preventDefault();
   };
 
-  const userName = (name) => {
-    const user = firebase.auth().currentUser;
-
-    user
-      .updateProfile({
-        displayName: name,
-      })
-      .then(function () {})
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  const handleSignInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then((result) => {
-        /** @type {firebase.auth.OAuthCredential} */
-        const user = result.user;
-        const currentUser = { ...user };
-        currentUser.name = user.displayName;
-        currentUser.loggedIn = true;
-        setUser(currentUser);
-        history.replace(from);
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log("error", errorMessage);
-      });
-  };
   return (
     <section className='login-section'>
       <div className='form-container'>
@@ -169,7 +121,7 @@ const Login = () => {
             <input onChange={handleToggle} type='checkbox' name='newUser' id='newUser' />
           </div>
         </form>
-        <button onClick={handleSignInWithGoogle} className='google-btn'>
+        <button onClick={googleSignIn} className='google-btn'>
           <FontAwesomeIcon icon={faGoogle} /> Sign in using google
         </button>
         <p style={{ color: "red", marginTop: "20px" }}>{user.error}</p>

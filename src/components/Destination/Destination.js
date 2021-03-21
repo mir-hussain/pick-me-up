@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useParams } from "react-router";
 import SearchResults from "../SearchResults/SearchResults";
+
 //css
 import "./Destination.css";
+
 //map
 import ReactMapGL from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";

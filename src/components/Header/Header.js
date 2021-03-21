@@ -1,8 +1,14 @@
 import React, { useContext } from "react";
+
+// react router
 import { Link } from "react-router-dom";
+
+// context
 import { UserContext } from "../../App";
+
 //css
 import "./Header.css";
+
 //firebase
 import firebase from "firebase/app";
 
