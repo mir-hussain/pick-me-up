@@ -18,8 +18,8 @@ const Destination = () => {
 
   // for map
   const [viewport, setViewport] = React.useState({
-    latitude: 23.777176,
     longitude: 90.399452,
+    latitude: 23.777176,
     zoom: 12,
   });
 

@@ -72,6 +72,8 @@ const Login = () => {
           userName(user.name);
           const currentUser = { ...user };
           currentUser.successful = true;
+          currentUser.loggedIn = true;
+          currentUser.name = user.name;
           currentUser.error = "";
           setUser(currentUser);
         })
@@ -89,7 +91,6 @@ const Login = () => {
         .signInWithEmailAndPassword(user.email, user.password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log("user signed in");
           const currentUser = { ...user };
           currentUser.name = user.displayName;
           currentUser.loggedIn = true;
@@ -115,9 +116,7 @@ const Login = () => {
       .updateProfile({
         displayName: name,
       })
-      .then(function () {
-        console.log("name update successfully");
-      })
+      .then(function () {})
       .catch(function (error) {
         console.log(error);
       });
@@ -132,7 +131,6 @@ const Login = () => {
       .then((result) => {
         /** @type {firebase.auth.OAuthCredential} */
         const user = result.user;
-        console.log("user logged in", user);
         const currentUser = { ...user };
         currentUser.name = user.displayName;
         currentUser.loggedIn = true;

@@ -43,7 +43,7 @@ const Header = () => {
           <li style={hide}>
             <Link to='/login'>Login</Link>
           </li>
-          {user.loggedIn && <li id='user-name'>{user.displayName}</li>}
+          {user.loggedIn && <li id='user-name'>{user.displayName || user.name}</li>}
           {user.loggedIn && (
             <li>
               <button id='logout-btn' onClick={signOut}>
