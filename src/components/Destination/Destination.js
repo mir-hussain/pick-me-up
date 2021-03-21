@@ -5,6 +5,7 @@ import SearchResults from "../SearchResults/SearchResults";
 import "./Destination.css";
 //map
 import ReactMapGL from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 const Destination = () => {
   const { method } = useParams();
@@ -13,7 +14,7 @@ const Destination = () => {
     showResult: false,
   });
 
-  const mapApiToken = "pk.eyJ1IjoibWlyNjk5NiIsImEiOiJja21oZjV1dXgwNnIwMnZzN2ZnbWM4d3JqIn0.LRhemhrBRxHHJSzrPi98AQ";
+  const mapApiToken = "pk.eyJ1IjoibWlyNjk5NiIsImEiOiJja21oeDJxeXcwYnBpMm9zMXpjczYxZGFuIn0.J-trINrat8oALtmJ_uswaA";
 
   // for map
   const [viewport, setViewport] = React.useState({
@@ -63,14 +64,7 @@ const Destination = () => {
       </div>
       <div className='map-container'>
         <div id='map'>
-          <ReactMapGL
-            mapboxApiAccessToken={mapApiToken}
-            {...viewport}
-            width='100%'
-            height='100%'
-            mapStyle='mapbox://styles/mir6996/ckmhhvpiopq2017l941v9e5y6'
-            onViewportChange={(viewport) => setViewport(viewport)}
-          />
+          <ReactMapGL mapboxApiAccessToken={mapApiToken} {...viewport} width='100%' height='100%' onViewportChange={(viewport) => setViewport(viewport)} />
         </div>
       </div>
     </section>

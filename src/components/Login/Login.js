@@ -8,6 +8,10 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "./firebase.config";
 
+//icon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+
 //UserContext
 import { UserContext } from "../../App";
 import { useHistory, useLocation } from "react-router";
@@ -167,7 +171,7 @@ const Login = () => {
           </div>
         </form>
         <button onClick={handleSignInWithGoogle} className='google-btn'>
-          Sign in using google
+          <FontAwesomeIcon icon={faGoogle} /> Sign in using google
         </button>
         <p style={{ color: "red", marginTop: "20px" }}>{user.error}</p>
         {user.successful && <p style={{ color: "green", marginTop: "20px" }}>User created successfully</p>}
