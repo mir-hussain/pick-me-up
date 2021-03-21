@@ -76,6 +76,7 @@ const Login = () => {
           currentUser.name = user.name;
           currentUser.error = "";
           setUser(currentUser);
+          history.replace(from);
         })
         .catch((error) => {
           const errorMessage = error.message;
