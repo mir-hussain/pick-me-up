@@ -2,7 +2,11 @@ import { createContext, useState } from "react";
 //css
 import "./App.css";
 //react router
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 //components
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
@@ -42,5 +46,7 @@ function App() {
     </UserContext.Provider>
   );
 }
+
+//i update this thing
 
 export default App;
